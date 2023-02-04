@@ -32,9 +32,9 @@ const updateSale = async (body, id) => {
   const promises = body.map(async ({ productId, quantity }) => {
  const affectedRows = await salesModel.updateSale(quantity, id, productId);
  return affectedRows;
-  })
+  });
   const results = await Promise.all(promises);
-   const hasError = results.some((affectedRows) => affectedRows < 1 )
+   const hasError = results.some((affectedRows) => affectedRows < 1);
   if (hasError) {
     return { type: 'error', message: 'Sale not found' };
   }

@@ -37,10 +37,18 @@ const [{ affectedRows }] = await connection
   return affectedRows;
 };
 
+const getSearchProducts = async (query) => {
+  const regex = `%${query}%`;
+const [results] = await connection
+.execute('SELECT * FROM StoreManager.products WHERE name LIKE ? ', [regex]);
+return results;
+};
+
 module.exports = {
   allProducts,
   productId,
   newProduct,
   updateProduct,
   deleteProduct,
+  getSearchProducts,
 };

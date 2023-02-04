@@ -46,7 +46,8 @@ const deleteSale = async (id) => {
 
 const updateSale = async (quantity, id, productId) => {
   const [{ affectedRows }] = await connection
-    .execute('UPDATE StoreManager.sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?;', [quantity, id, productId]);
+    .execute(`UPDATE StoreManager.sales_products SET quantity = ? WHERE sale_id = ? 
+    AND product_id = ?;`, [quantity, id, productId]);
   return affectedRows; 
 };
 
