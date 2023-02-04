@@ -16,8 +16,17 @@ const newProduct = async (product) => {
   return getNewproductId;
 }; 
 
+const updateProduct = async (name, id) => {
+  const affectedRows = await productsModel.updateProduct(name, id);
+  if (affectedRows < 1) {
+    return { type: 'error', message: 'Product not found' };
+  }
+  return { type: null, message: { id, name } };
+};
+
 module.exports = {
   allProducts,
   productId,
   newProduct,
+  updateProduct,
 };
