@@ -10,7 +10,7 @@ const allProducts = async () => {
 
 const productId = async (id) => {
   const [
-    [product]
+    [product],
   ] = await connection
     .execute('SELECT * FROM StoreManager.products WHERE id = ?', [id]);
   return camelize(product);
@@ -20,10 +20,9 @@ const newProduct = async (product) => {
 const columns = Object.keys(snakeize(product)).join(', ');
 const placeholders = Object.keys(product).map((_key) => ('?')).join(', ');
 const resultado = await connection
-.execute(`INSERT INTO products(${columns}) VALUES(${placeholders})`, [...Object.values(product)],
-);
+.execute(`INSERT INTO products(${columns}) VALUES(${placeholders})`, [...Object.values(product)]);
 const [{ insertId: id }] = resultado;
-  return {id, name: product.name };
+  return { id, name: product.name };
 };
 
 module.exports = {

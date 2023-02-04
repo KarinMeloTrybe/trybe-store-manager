@@ -10,7 +10,7 @@ if (!name) {
 }
 if (name.length < 5) { 
   return response.status(422)
-  .json({ message: '"name\" length must be at least 5 characters long' });
+  .json({ message: '"name" length must be at least 5 characters long' });
  }
  next();
 };

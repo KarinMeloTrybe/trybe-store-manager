@@ -24,7 +24,7 @@ const productId = async (request, response) => {
 };
 
 const newProduct = async (request, response) => {
-    const { name }  = request.body;
+    const { name } = request.body;
     const product = {
       name,
     };

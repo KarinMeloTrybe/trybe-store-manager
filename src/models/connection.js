@@ -5,7 +5,7 @@ const config = {
   user: process.env.MYSQL_USER || 'root',
   password: process.env.MYSQL_PASSWORD || 'password',
   database: process.env.MYSQL_DATABASE || 'StoreManager',
-}
+};
 
 const connection = mysql.createPool(config);
 
