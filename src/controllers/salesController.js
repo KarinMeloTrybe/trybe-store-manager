@@ -25,10 +25,31 @@ const results = await salesService.getAllSales();
    return response.status(200).json(message);
 };
 
+const deleteSale = async (request, response) => {
+  const { id } = request.params;
+  const { type, message } = await salesService.deleteSale(id);
+  if (type) {
+    return response.status(404).json({ message });
+  }
+  return response.status(204).json(message);
+};
+
+const updateSale = async (request, response) => {
+  const { id } = request.params;
+  const  { body }  = request;
+  const { type, message } = await salesService.updateSale(body, id);
+  if (type) {
+    return response.status(404).json({ message });
+  }
+  return response.status(200).json(message);
+};
+
 module.exports = {
   newSale,
   getAllSales,
   getSaleId,
+  deleteSale,
+  updateSale,
 };
 
 /* const { id } = request.params;

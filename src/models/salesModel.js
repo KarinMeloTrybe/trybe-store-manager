@@ -38,10 +38,24 @@ const getSaleId = async (id) => {
   return result;
 };
 
+const deleteSale = async (id) => {
+  const [{ affectedRows }] = await connection
+    .execute('DELETE FROM StoreManager.sales WHERE id = ?', [id]);
+  return affectedRows;
+};
+
+const updateSale = async (quantity, id, productId) => {
+  const [{ affectedRows }] = await connection
+    .execute('UPDATE StoreManager.sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?;', [quantity, id, productId]);
+  return affectedRows; 
+};
+
 module.exports = {
   newSale,
   salesRegistry,
   validateIds,
   getAllSales,
   getSaleId,
+  deleteSale,
+  updateSale,
 };
