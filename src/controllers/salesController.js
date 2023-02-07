@@ -1,6 +1,6 @@
 const salesService = require('../services/salesService');
 
-const newSale = async (request, response) => {
+ const newSale = async (request, response) => {
   const sales = request.body;
   const { id, itemsSold } = await salesService.newSale(sales);
 
@@ -9,7 +9,7 @@ const newSale = async (request, response) => {
   }
 
   return response.status(201).json({ id, itemsSold });
-};
+}; 
 
 const getAllSales = async (_request, response) => {
 const results = await salesService.getAllSales(); 
